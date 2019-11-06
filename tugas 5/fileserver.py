@@ -3,15 +3,7 @@ import base64
 
 class FileServer(object):
     def __init__(self):
-        self.pyro_server = ["fileserver1","fileserver2","fileserver3"]
-        self.pyro = dict()
-
-    def pyro_connect(self):
-        i = 0
-        for list in self.pyro_server:
-            uri = "PYRONAME:{}@localhost:7777" . format(list)
-            self.pyro[i] = Pyro4.Proxy(uri)
-            i+=1
+        pass
 
     def create_return_message(self,kode='000',message='kosong',data=None):
         return dict(kode=kode,message=message,data=data)
@@ -28,8 +20,6 @@ class FileServer(object):
             return self.create_return_message('500','Error')
 
     def create(self, name='filename000'):
-        for x in range(0, len(self.pyro)):
-            self.pyro[x].create(name, isi)
         nama='FFF-{}' . format(name)
         print("create ops {}" . format(nama))
         try:
@@ -51,9 +41,6 @@ class FileServer(object):
         except:
             return self.create_return_message('500','Error')
     def update(self,name='filename000',content=''):
-        for x in range(0, len(self.pyro)):
-            self.pyro[x].update(name, content)
-
         nama='FFF-{}' . format(name)
         print("update ops {}" . format(nama))
 
@@ -68,10 +55,6 @@ class FileServer(object):
             return self.create_return_message('500','Error',str(e))
 
     def delete(self,name='filename000'):
-        for x in range(0, len(self.pyro)):
-            flag += 1
-            self.pyro[x].delete(name)
-            
         nama='FFF-{}' . format(name)
         print("delete ops {}" . format(nama))
 
