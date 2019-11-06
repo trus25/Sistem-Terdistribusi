@@ -1,9 +1,8 @@
+from fileserver import  *
 import Pyro4
 import sys
-sys.path.append("..")
-from fileserver import  *
 
-namainstance ="fileserver3"
+namainstance = sys.argv[1] or "fileserver"
 
 def start_without_ns():
     daemon = Pyro4.Daemon()
